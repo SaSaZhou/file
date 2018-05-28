@@ -1,0 +1,6 @@
+1.导入php_3203.sql
+2.修改 Application\Common\Conf\config.php
+
+后台：域名+/admin.php
+
+账号 admin  密码 123456

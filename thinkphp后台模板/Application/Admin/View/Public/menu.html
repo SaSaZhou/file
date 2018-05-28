@@ -1,0 +1,205 @@
+<if condition="$config['pattern'] eq 1">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span><img alt="image" class="img-circle" src="__IMG__/profile_small.jpg" /></span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs"><strong class="font-bold">{$_SESSION.admin_auth.username}</strong></span>
+                                <span class="text-muted text-xs block">{$adminauth.title}<b class="caret"></b></span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="J_menuItem" href="{:U('Index/updPwd')}">{:L('icon-key')}</a></li>
+                            <!--<li><a class="J_menuItem" href="{:U('User/updateNickname')}">个人资料</a></li>-->
+                            <li class="divider"></li>
+                            <li><a href="{:U('Public/logout')}">{:L('Logout')}</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">M+</div>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="{:U('Index/summarize')}"><i class="fa fa-home"></i> <span class="nav-label">主页</span></a>
+                </li>
+                <if condition="$adminauth['category'] eq 1 || $adminauth['article'] eq 1 || $adminauth['download'] eq 1 || $adminauth['jobs'] eq 1">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-file-o"></i>
+                            <span class="nav-label">内容管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <if condition="$adminauth['category'] eq 1"><li><a class="J_menuItem" href="{:U('Category/index')}">栏目管理</a></li></if>
+                            <if condition="$adminauth['article'] eq 1"><li><a class="J_menuItem" href="{:U('Article/index')}">文章管理</a></li></if>
+                            <!--<li><a class="J_menuItem" href="{:U('Product/index')}">产品管理</a></li>
+                            <li><a class="J_menuItem" href="{:U('Video/index')}">视频管理</a></li>-->
+                            <if condition="$adminauth['download'] eq 1"><li><a class="J_menuItem" href="{:U('Download/index')}">下载管理</a></li></if>
+                            <if condition="$adminauth['jobs'] eq 1"><li><a class="J_menuItem" href="{:U('Jobs/index')}">招聘管理</a></li></if>
+                        </ul>
+                    </li>
+                </if>
+                <if condition="$adminauth['guest'] eq 1 || $adminauth['newguest'] eq 1 || $adminauth['guestback'] eq 1">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-facebook"></i>
+                            <span class="nav-label">留言管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <if condition="$adminauth['guest'] eq 1"><li><a class="J_menuItem" href="{:U('Guestbook/index')}">全部留言</a></li></if>
+                            <if condition="$adminauth['newguest'] eq 1"><li><a class="J_menuItem" href="{:U('Guestbook/index',array('status' => 0))}">新消息</a></li></if>
+                            <if condition="$adminauth['guestback'] eq 1"><li><a class="J_menuItem" href="{:U('Guestbook/index',array('status' => 1))}">已回复</a></li></if>
+                        </ul>
+                    </li>
+                </if>
+                <if condition="$adminauth['member'] eq 1">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span class="nav-label">会员管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a class="J_menuItem" href="{:U('User/index')}">会员列表</a></li>
+                             <!--<li><a class="J_menuItem" href="{:U('User/group_list')}">会员组管理</a></li>-->
+                        </ul>
+                    </li>
+                </if>
+                <if condition="$adminauth['id'] eq 1">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span class="nav-label">用户管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a class="J_menuItem" href="{:U('Admin/index')}">管理员列表</a></li>
+                            <li><a class="J_menuItem" href="{:U('Admin/auth_list')}">用户组管理</a></li>
+                            <li><a class="J_menuItem" href="{:U('Havior/index')}">用户行为</a></li>
+                            <li><a class="J_menuItem" href="{:U('Action/index')}">操作记录</a></li>
+                        </ul>
+                    </li>
+                </if>
+                <if condition="$adminauth['site'] eq 1 || $adminauth['flink'] eq 1 || $adminauth['banner'] eq 1 || $adminauth['cache'] eq 1">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-gear"></i>
+                            <span class="nav-label">基本设置</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                            <if condition="$adminauth['site'] eq 1"><li><a class="J_menuItem" href="{:U('Site/index')}">基本设置</a></li></if>
+                            <if condition="$adminauth['flink'] eq 1"><li><a class="J_menuItem" href="{:U('Flink/index')}">友情链接</a></li></if>
+                            <if condition="$adminauth['banner'] eq 1"><li><a class="J_menuItem" href="{:U('Banner/index')}">幻灯片管理</a></li></if>
+                            <!--<li><a class="J_menuItem" href="{:U('Config/index')}">SMTP邮箱配置</a></li>-->
+                            <if condition="$adminauth['cache'] eq 1"><li><a class="J_menuItem" href="{:U('Public/cache')}">清理缓存</a></li></if>
+                        </ul>
+                    </li>
+                </if>
+                <if condition="$adminauth['dbak'] eq 1 || $adminauth['import'] eq 1">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-database"></i>
+                            <span class="nav-label">数据库管理</span> 
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse">
+                             <if condition="$adminauth['dbak'] eq 1"><li><a class="J_menuItem" href="{:U('Dbak/index')}">数据备份</a></li></if>
+                             <if condition="$adminauth['import'] eq 1"><li><a class="J_menuItem" href="{:U('Dbak/import')}">数据还原</a></li></if>
+                        </ul>
+                    </li>
+                </if>
+            </ul>
+        </div>
+    </nav>
+<else/>
+    <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+            <div id="sidebar-menu">
+                <ul>
+                    <li class=''>
+                        <a href="{:U('Index/summarize')}"><i class='icon-home-3'></i><span>主页</span></a>
+                    </li>
+                    <if condition="$adminauth['category'] eq 1 || $adminauth['article'] eq 1 || $adminauth['download'] eq 1 || $adminauth['jobs'] eq 1">
+                        <li class='has_sub'>
+                            <a href='javascript:void(0);'><i class='fa fa-file-o'></i><span>内容管理</span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                            <ul>
+                                <if condition="$adminauth['category'] eq 1"><li><a href="{:U('Category/index')}"><span>栏目管理</span></a></li></if>
+                                <if condition="$adminauth['article'] eq 1"><li><a href="{:U('Article/index')}"><span>文章管理</span></a></li></if>
+                                <!--<li><a href="{:U('Product/index')}"><span>产品管理</span></a></li>
+                                <li><a href="{:U('Video/index')}"><span>视频管理</span></a></li>-->
+                                <if condition="$adminauth['download'] eq 1"><li><a href="{:U('Download/index')}"><span>下载管理</span></a></li></if>
+                                <if condition="$adminauth['jobs'] eq 1"><li><a href="{:U('Jobs/index')}"><span>招聘管理</span></a></li></if>
+                            </ul>
+                        </li>
+                    </if>
+					<if condition="$adminauth['guest'] eq 1 || $adminauth['newguest'] eq 1 || $adminauth['guestback'] eq 1">
+                        <li class='has_sub'>
+                            <a href='javascript:void(0);'><i class='fa fa-book'></i><span>留言管理</span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                            <ul>
+                                <if condition="$adminauth['guest'] eq 1"><li><a href="{:U('Guestbook/index')}"><span>全部留言</span></a></li></if>
+                                <if condition="$adminauth['newguest'] eq 1"><li><a href="{:U('Guestbook/index',array('status' => 0))}">新消息</a></li></if>
+                                <if condition="$adminauth['guestback'] eq 1"><li><a href="{:U('Guestbook/index',array('status' => 1))}">已回复</a></li></if>
+                            </ul>
+                        </li>
+                    </if>
+                    <if condition="$adminauth['member'] eq 1">
+                        <li class='has_sub'>
+                            <a href='javascript:void(0);'><i class='fa fa-user'></i><span>会员管理</span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                            <ul>
+                                <li><a href="{:U('User/index')}"><span>会员列表</span></a></li>
+                                 <!--<li><a href="{:U('User/group_list')}"><span>会员组管理</span></a></li>-->
+                            </ul>
+                        </li>
+                    </if>
+                    <if condition="$adminauth['id'] eq 1">
+                        <li class='has_sub'>
+                            <a href='javascript:void(0);'><i class='fa fa-user'></i><span>用户管理</span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                            <ul>
+                                <li><a href="{:U('Admin/index')}"><span>管理员列表</span></a></li>
+                                <li><a href="{:U('Admin/auth_list')}"><span>用户组管理</span></a></li>
+                                <li><a href="{:U('Havior/index')}"><span>用户行为</span></a></li>
+                                <li><a href="{:U('Action/index')}"><span>操作记录</span></a></li>
+                            </ul>
+                        </li>
+                    </if>
+                    <if condition="$adminauth['site'] eq 1 || $adminauth['flink'] eq 1 || $adminauth['banner'] eq 1 || $adminauth['cache'] eq 1">
+                        <li class='has_sub'>
+                            <a href='javascript:void(0);'><i class='fa fa-cog'></i><span>系统参数</span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                            <ul>
+                                <if condition="$adminauth['site'] eq 1"><li><a href="{:U('Site/index')}"><span>基本设置</span></a></li></if>
+                                <if condition="$adminauth['flink'] eq 1"><li><a href="{:U('Flink/index')}"><span>友情链接</span></a></li></if>
+                                <if condition="$adminauth['banner'] eq 1"><li><a href="{:U('Banner/index')}"><span>幻灯片管理</span></a></li></if>
+                                <!--<li><a href="{:U('Config/index')}"><span>SMTP邮箱配置</span></a></li>-->
+                                <if condition="$adminauth['cache'] eq 1"><li><a href="{:U('Public/cache')}"><span>清理缓存</span></a></li></if>
+                            </ul>
+                        </li>
+                    </if>
+                    <if condition="$adminauth['dbak'] eq 1 || $adminauth['import'] eq 1">
+                        <li class='has_sub'>
+                            <a href='javascript:void(0);'><i class='fa fa-bar-chart'></i><span>数据库管理</span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                            <ul>
+                                <if condition="$adminauth['dbak'] eq 1"><li><a href="{:U('Dbak/index')}"><span>数据备份</span></a></li></if>
+                                <if condition="$adminauth['import'] eq 1"><li><a href="{:U('Dbak/import')}"><span>数据还原</span></a></li></if>
+                            </ul>
+                        </li>
+                    </if>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="left-footer">
+            <div class="progress progress-xs">
+                <div class="progress-bar bg-green-1" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                    <span class="progress-precentage">80%</span>
+                </div>
+                <a data-toggle="tooltip" title="See task progress" class="btn btn-default" data-modal="task-progress"><i class="fa fa-inbox"></i></a>
+            </div>
+        </div>
+    </div>
+</if>
